@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            display: grid;
+            grid-template-columns: repeat(1, 300px);
+        }
+
+        td {
+            /* border: 1px solid gray; */
+            padding: 5px;
+            background-color: crimson;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .table-container {
+            display: flex;
+            gap: 50px;
+        }
+
+        p {
+            margin-top: 120px;
+            color: blue;
+            font-size: 30px;
+
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        tr {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table-container">
+        <div>
+            <h4>New Image:</h4>
+            <table id="table"></table>
+        </div>
+        <!-- <p><b>*</b></p>
+        <div>
+            <h4>Filter: </h4>
+            <table id="filter"></table>
+        </div> -->
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        const image = [
+            253, 253, 253, 0, 4, 254, 81, 78, 7, 3, 53, 6, 252, 5, 87, 133, 205, 29, 6, 5, 252, 252, 78, 28, 13
+        ];
+        const filter = [254, 81, 78, 53, 6, 252, 133, 205, 29];
+        let m = 5;
+        let n = 5;
+        let x = 0;
+        let y = 1;
+        let z = 2;
+        let newImage = [];
+        let trackIndex = [0, 1, 2];
+        const table = document.getElementById('table');
+        const table2 = document.getElementById('filter');
+        const result = document.getElementById('result');
+        for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 6; i++) { //6 if 3*3
+                let res = trackIndex[i] + n;
+                trackIndex.push(res);
+                // console.log(trackIndex);
+            }
+
+            for (let i = 0; i < image.length; i++) {
+                if (trackIndex[i] || trackIndex[i] == 0) {
+                    let x = image[trackIndex[i]];
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                <td>${x}</td>
+                `;
+                    table.appendChild(tr);
+                    newImage.push(x);
+                }
+            }
+
+            let sum = 0;
+            for (let i = 0; i < newImage.length; i++) {
+                let result = newImage[i] * filter[i];
+                //     const tr = document.createElement('tr');
+                //     tr.innerHTML = `
+                //     <td>${filter[i]}</td>
+                // `;
+                //     table2.appendChild(tr);
+                sum += result;
+            }
+            // document.write(sum + '<br>');
+            const h2 = document.createElement('h2');
+            h2.innerHTML = `Result = ${sum} <br>`;
+            table.appendChild(h2);
+            // console.log(newImage);
+            for (let i = 0; i < 9; i++) {
+                trackIndex.pop();
+                newImage.pop();
+            }
+            x++;
+            y++;
+            z++;
+            trackIndex.push(x);
+            trackIndex.push(y);
+            trackIndex.push(z);
+            console.log(trackIndex);
+            if (z == 4 || z == 9) {
+                x += 2;
+                y += 2;
+                z += 2;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

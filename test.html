@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const image = [
+            73, 73, 73, 0, 0, 74, 57, 54, 3, 7, 47, 2, 72, 1, 99, 6, 27, 41, 2, 1, 22, 72, 54, 8, 205
+        ];
+
+        const filter = [74, 57, 54, 47, 2, 72, 6, 27, 41];
+        let m = 5;
+        let n = 5;
+        let x = 0;
+        let y = 1;
+        let z = 2;
+        let newImage = [];
+        let trackIndex = [0, 1, 2];
+
+        for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 6; i++) { //6 if 3*3
+                let res = trackIndex[i] + n;
+                trackIndex.push(res);
+                // console.log(trackIndex);
+            }
+
+            for (let i = 0; i < image.length; i++) {
+                if (trackIndex[i] || trackIndex[i] == 0) {
+                    let x = image[trackIndex[i]];
+                    newImage.push(x);
+                }
+            }
+
+            let sum = 0;
+            for (let i = 0; i < newImage.length; i++) {
+                let result = newImage[i] * filter[i];
+                sum += result;
+            }
+            document.write(sum + '<br>');
+            // console.log(newImage);
+            for (let i = 0; i < 9; i++) {
+                trackIndex.pop();
+                newImage.pop();
+            }
+            x++;
+            y++;
+            z++;
+            trackIndex.push(x);
+            trackIndex.push(y);
+            trackIndex.push(z);
+            console.log(trackIndex);
+            if(z == 4 || z == 9){
+                x+=2;
+                y+=2;
+                z+=2;
+            }
+
+        }
+    </script>
+</body>
+
+</html>

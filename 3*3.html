@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+        }
+
+        td {
+            /* border: 1px solid gray; */
+            padding: 5px;
+            background-color: crimson;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .table-container {
+            display: flex;
+            gap: 50px;
+        }
+        p{
+            margin-top: 120px;
+            color: blue;
+            font-size: 30px;
+            
+        }
+        h2{
+            color: blue;
+        }
+        tr{
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table-container">
+        <div>
+            <h4>New Image:</h4>
+            <table id="table"></table>
+        </div>
+        <p><b>*</b></p>
+        <div>
+            <h4>Filter: </h4>
+            <table id="filter"></table>
+        </div>
+    </div>
+
+    <h2 id="result"></h2>
+
+    <script>
+
+        const table = document.getElementById('table');
+        const table2 = document.getElementById('filter');
+
+        const image = [
+           73,73,73,0,0,74,57,54,3,7,47,2,72,1,99,6,27,41,2,1,22,72,54,8,205
+        ];
+
+        const filter = [74.7,57,54,47,2,72,6,27,41];
+        let m = 5;
+        let n = 5;
+        let newImage = [];
+
+        let trackIndex = [0,1,2];
+        for (let i = 0; i < 6; i++) {
+            let res = trackIndex[i] + n;
+            trackIndex.push(res);
+        }
+
+        for (let i = 0; i < image.length; i++) {
+            if (trackIndex[i] || trackIndex[i] == 0) {
+                let x = image[trackIndex[i]];
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                <td>${x}</td>
+                `;
+                table.appendChild(tr);
+
+                newImage.push(x);
+
+            }
+        }
+
+
+
+        let sum = 0;
+        for (let i = 0; i < newImage.length; i++) {
+            let result = newImage[i] * filter[i];
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+            <td>${filter[i]}</td>
+            `;
+            table2.appendChild(tr);
+            sum += result;
+        }
+
+        document.getElementById('result').innerText = 'Result = '+ sum;
+
+    </script>
+</body>
+
+</html>
