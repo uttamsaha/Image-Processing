@@ -142,7 +142,15 @@
                 console.log(trackIndex);
 
                 ///increment index
-                if (z == 6 || z == 13 || z == 20 || z == 27 || z == 34) {
+
+                let k = (n - 1);
+                //if not work back to handcore.
+                // if (z == 6 || z == 13 || z == 20 || z == 27 || z == 34) {
+                //     x += 2;
+                //     y += 2;
+                //     z += 2;
+                // }
+                if (z == k || z == k*2+1 || z == k*3+2 || z == k*4+3 || z == k*5+4) {
                     x += 2;
                     y += 2;
                     z += 2;
