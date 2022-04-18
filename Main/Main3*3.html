@@ -48,35 +48,32 @@
             <h4>New Image:</h4>
             <table id="table"></table>
         </div>
-        <!-- <p><b>*</b></p>
-        <div>
-            <h4>Filter: </h4>
-            <table id="filter"></table>
-        </div> -->
     </div>
 
     <div id="result"></div>
 
     <script>
+        //change image, filter, m, n && increment index.
         const image = [
-            253, 253, 253, 0, 4, 254, 81, 78, 7, 3, 53, 6, 252, 5, 87, 133, 205, 29, 6, 5, 252, 252, 78, 28, 13
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42
         ];
-        const filter = [254, 81, 78, 53, 6, 252, 133, 205, 29];
-        let m = 5;
-        let n = 5;
+        const filter = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let m = 7;
+        let n = 6;
+
         let x = 0;
         let y = 1;
         let z = 2;
+        let loop = ((m * n) - ((n * 2) + ((m - 2) * 2)));
         let newImage = [];
         let trackIndex = [0, 1, 2];
         const table = document.getElementById('table');
         const table2 = document.getElementById('filter');
         const result = document.getElementById('result');
-        for (let i = 0; i < 9; i++) {
-            for (let i = 0; i < 6; i++) { //6 if 3*3
+        for (let i = 0; i < loop; i++) {
+            for (let i = 0; i < 6; i++) {
                 let res = trackIndex[i] + n;
                 trackIndex.push(res);
-                // console.log(trackIndex);
             }
 
             for (let i = 0; i < image.length; i++) {
@@ -94,18 +91,11 @@
             let sum = 0;
             for (let i = 0; i < newImage.length; i++) {
                 let result = newImage[i] * filter[i];
-                //     const tr = document.createElement('tr');
-                //     tr.innerHTML = `
-                //     <td>${filter[i]}</td>
-                // `;
-                //     table2.appendChild(tr);
                 sum += result;
             }
-            // document.write(sum + '<br>');
             const h2 = document.createElement('h2');
             h2.innerHTML = `Result = ${sum} <br>`;
             table.appendChild(h2);
-            // console.log(newImage);
             for (let i = 0; i < 9; i++) {
                 trackIndex.pop();
                 newImage.pop();
@@ -117,7 +107,9 @@
             trackIndex.push(y);
             trackIndex.push(z);
             console.log(trackIndex);
-            if (z == 4 || z == 9) {
+            
+            ///increment index
+            if (z == 5 || z == 11 || z == 17 || z == 23 || z == 29) {
                 x += 2;
                 y += 2;
                 z += 2;

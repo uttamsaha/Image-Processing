@@ -32,10 +32,12 @@
             font-size: 30px;
 
         }
-        tr{
+
+        tr {
             margin-bottom: 8px;
         }
-        h2{
+
+        h2 {
             color: blue;
         }
     </style>
@@ -72,7 +74,7 @@
         let m = 6;
         let n = 7;
         let newImage = [];
-        let trackIndex = [8, 9, 10, 11, 12];
+        let trackIndex = [0, 1, 2, 3, 4];
         for (let i = 0; i < 20; i++) { //6 if 3*3
             let res = trackIndex[i] + n;
             trackIndex.push(res);
@@ -101,7 +103,7 @@
             table2.appendChild(tr);
             sum += result;
         }
-        document.getElementById('result').innerText = 'Result = '+ sum;
+        document.getElementById('result').innerText = 'Result = ' + sum;
 
     </script>
 </body>
