@@ -7,37 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        table {
-            display: grid;
-            grid-template-columns: repeat(1, 300px);
-        }
-
         td {
-            /* border: 1px solid gray; */
-            padding: 5px;
+            padding: 10px;
             background-color: crimson;
             color: white;
             border-radius: 3px;
-        }
-
-        .table-container {
-            display: flex;
-            gap: 50px;
         }
 
         p {
             margin-top: 120px;
             color: blue;
             font-size: 30px;
-
         }
 
-        h2 {
-            color: blue;
+        h4 {
+            color: rgb(0, 0, 0);
         }
 
         tr {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        #table {
+            display: grid;
+            grid-template-columns: repeat(3, 180px);
         }
     </style>
 </head>
@@ -55,11 +48,12 @@
     <script>
         //change image, filter, m, n && increment index.
         const image = [
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42
+            0, 0, 0, 0, 0, 0, 0, 0, 73, 73, 73, 0, 0, 0, 0, 74, 57, 54, 3, 7, 0, 0, 47, 2, 72, 1, 99, 0, 0, 6, 27, 41, 2, 1, 0, 0, 72, 72, 54, 8, 205, 0, 0, 0, 0, 0, 0, 0, 0
         ];
-        const filter = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // const filter = [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625]; 3*3 weighted avg filter
+        const filter = [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625];
         let m = 7;
-        let n = 6;
+        let n = 7;
 
         let x = 0;
         let y = 1;
@@ -93,9 +87,13 @@
                 let result = newImage[i] * filter[i];
                 sum += result;
             }
-            const h2 = document.createElement('h2');
-            h2.innerHTML = `Result = ${sum} <br>`;
-            table.appendChild(h2);
+            const h4 = document.createElement('h4');
+            const span = document.createElement('span');
+            const span2 = document.createElement('span');
+            h4.innerHTML = `Result = ${sum} <br>`;
+            table.appendChild(h4);
+            table.appendChild(span);
+            table.appendChild(span2);
             for (let i = 0; i < 9; i++) {
                 trackIndex.pop();
                 newImage.pop();
@@ -107,9 +105,9 @@
             trackIndex.push(y);
             trackIndex.push(z);
             console.log(trackIndex);
-            
+
             ///increment index
-            if (z == 5 || z == 11 || z == 17 || z == 23 || z == 29) {
+            if (z == 6 || z == 13 || z == 20 || z == 27 || z == 34) {
                 x += 2;
                 y += 2;
                 z += 2;
