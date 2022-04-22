@@ -12,6 +12,31 @@
 </head>
 
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Image Filters</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto me-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html" target="_blank">3*3 Filters</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="min-max.html" target="_blank">3*3 Min & Max Filter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="5*5.html" target="_blank">5*5 Filters</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="container mt-3 p-4 bg-dark rounded-3 mb-5 mt-5">
         <p class="text-white fs-4 text-center mb-4"> 3*3 Min Max
             Finder</p>
@@ -35,6 +60,9 @@
         </div>
     </div>
     <script src="js/min-max.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
