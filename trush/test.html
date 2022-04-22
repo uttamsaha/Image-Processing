@@ -112,12 +112,13 @@
             const stringImage = numberImage.split(',');
             const stringFilter = numberFilter.split(',');
             const table = document.getElementById('table');
-            const table2 = document.getElementById('filter');
+            const filterField = document.getElementById('filter');
             const result = document.getElementById('result');
             const selectedFilter = document.getElementById('selectedFilter').value;
 
 
             table.innerHTML = '';
+            
 
             // if (selectedFilter === 'Mean') {
             //     document.getElementById('filter').style.display = 'none';
@@ -147,6 +148,15 @@
                     filter[i] = parseFloat(stringFilter[i]);
                 }
             }
+            if(numberFilter === ''){
+                alert('Filter cannot be empty..');
+                return;
+            }
+            if(filter.length != 9){
+                alert('Your filter length should be 9');
+                return;
+            }
+
 
 
 
