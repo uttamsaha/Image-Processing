@@ -122,6 +122,7 @@
             for (let i = 0; i < stringImage.length; i++) {
                 image[i] = parseFloat(stringImage[i]);
             }
+            console.log(image.length);
 
             if (selectedFilter === 'CrossCorrelation') {
                 for (let i = 0; i < stringFilter.length; i++) {
@@ -205,8 +206,8 @@
 
                 ///increment index
 
-                let k = (n - 1);
-                if (v == k || v == v * 2 + 1 || v == k * 3 + 2 || v == k * 4 + 3 || v == k * 5 + 4) {
+                let index = (n - 1);
+                if ((v == index) || (v == (index * 2) + 1) || (v == (index * 3 + 2)) || (v == (index * 4) + 3) || (v == (index * 5) + 4) || (v == (index * 6) + 5) || (v == (index * 7) + 6) || (v == (index * 8) + 7) || (v == (index * 9) + 8)) {
                     x += 4;
                     y += 4;
                     z += 4;
@@ -215,6 +216,7 @@
                 }
 
             }
+
         })
 
         //change image, filter, m, n && increment index.
