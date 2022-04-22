@@ -56,6 +56,13 @@
             <input type="number" class="form-control w-25" name="" id="m" placeholder="Enter number of rows">
             <input type="number" class="form-control w-25" name="" id="n" placeholder="Enter number of columns">
         </div>
+        <select class="form-select w-25 mb-3" aria-label="Default select example" name="" id="selectedFilter">
+            <option value="Mean" selected disabled>Select your Filter</option>
+            <option value="Mean">Mean Filter</option>
+            <option value="Weighted">Weighted Average Filter</option>
+            <option value="CrossCorrelation">Cross Correlation</option>
+        </select>
+
         <input class="form-control" type="text" name="" id="numberInput"
             placeholder="Enter your image.. separated by comma"> <br>
         <input class="form-control" type="text" name="" id="filter" placeholder="Enter your filter"> <br>
@@ -68,6 +75,34 @@
     </div>
 
     <script>
+
+        let image = [];
+        let filter = [];
+        document.getElementById('filter').style.display = 'none';
+
+
+        //event handler
+        document.getElementById('selectedFilter').addEventListener('click', () => {
+            const selectedFilter = document.getElementById('selectedFilter').value;
+
+            if (selectedFilter === 'CrossCorrelation') {
+                document.getElementById('filter').style.display = 'block';
+                filter = [];
+            }
+            else if (selectedFilter === 'Weighted') {
+                filter = [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625];
+                document.getElementById('filter').style.display = 'none';
+            }
+            else if (selectedFilter === 'Mean') {
+                filter = [0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111];
+                document.getElementById('filter').style.display = 'none';
+            }
+            else {
+                filter = [];
+            }
+        })
+
+        //event handler
         document.getElementById('btn').addEventListener('click', () => {
             let array = [];
             const numberImage = document.getElementById('numberInput').value;
@@ -79,24 +114,38 @@
             const table = document.getElementById('table');
             const table2 = document.getElementById('filter');
             const result = document.getElementById('result');
+            const selectedFilter = document.getElementById('selectedFilter').value;
+
 
             table.innerHTML = '';
 
+            // if (selectedFilter === 'Mean') {
+            //     document.getElementById('filter').style.display = 'none';
+            // }
+            // else if (selectedFilter === 'Weighted') {
+            //     document.getElementById('filter').style.display = 'none';
+            // }
+            // if(selectedFilter === 'Mean'){
+            //     document.getElementById('filter').style.display = 'none';
+            // }
+
+
+
 
             //image & filter
-        //     const image = [
-        //     91, 253, 253, 0, 252, 4, 254, 129, 12, 7, 7, 3, 53, 7, 252, 5, 5, 87, 133, 205, 29, 4, 5, 5, 252, 252, 252, 78, 18, 13
-        // ];
-        // const filter = [252, 29, 1, 29, 4, 5, 252, 78, 18];
-            
-            let image = [];
-            let filter = [];
+            //     const image = [
+            //     91, 253, 253, 0, 252, 4, 254, 129, 12, 7, 7, 3, 53, 7, 252, 5, 5, 87, 133, 205, 29, 4, 5, 5, 252, 252, 252, 78, 18, 13
+            // ];
+            // const filter = [252, 29, 1, 29, 4, 5, 252, 78, 18];
+
             for (let i = 0; i < stringImage.length; i++) {
                 image[i] = parseFloat(stringImage[i]);
             }
 
-            for (let i = 0; i < stringFilter.length; i++) {
-                filter[i] = parseFloat(stringFilter[i]);
+            if (selectedFilter === 'CrossCorrelation') {
+                for (let i = 0; i < stringFilter.length; i++) {
+                    filter[i] = parseFloat(stringFilter[i]);
+                }
             }
 
 
