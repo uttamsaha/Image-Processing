@@ -61,6 +61,7 @@ document.getElementById('btn').addEventListener('click', () => {
     // }
     if (filter.length != 9) {
         alert('Your filter length should be 9');
+        filter = [];
         return;
     }
 

@@ -12,8 +12,10 @@ document.getElementById('selectedFilter').addEventListener('click', () => {
         filter = [];
     }
     else if (selectedFilter === 'Weighted') {
-        filter = [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625];
+        // filter = [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625];
         document.getElementById('filter').style.display = 'none';
+        alert('5*5 average weighted filter under construction. Will be back soon...');
+        return;
     }
     else if (selectedFilter === 'Mean') {
         filter = [0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111];
@@ -56,7 +58,8 @@ document.getElementById('btn').addEventListener('click', () => {
     //     return;
     // }
     if (filter.length != 25) {
-        alert('Your filter length should be 9');
+        alert('Your filter length should be 25');
+        filter = [];
         return;
     }
 
