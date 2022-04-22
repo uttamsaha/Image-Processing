@@ -34,7 +34,7 @@
 
         #table {
             display: grid;
-            grid-template-columns: repeat(3, 180px);
+            grid-template-columns: repeat(5, 180px);
         }
 
         .table-container {
@@ -50,7 +50,7 @@
 
 <body>
     <div class="container mt-3 p-4 bg-dark rounded-3 mb-5 mt-5">
-        <p class="text-white fs-4 text-center mb-4"> 3*3 Weighted Average Filter, Mean Filter & Image Cross Correlation
+        <p class="text-white fs-4 text-center mb-4"> 5*5 Weighted Average Filter, Mean Filter & Image Cross Correlation
             Finder</p>
         <div class="d-flex gap-3 mb-3">
             <input type="number" class="form-control w-25" name="" id="m" placeholder="Enter number of rows">
@@ -94,7 +94,7 @@
                 document.getElementById('filter').style.display = 'none';
             }
             else if (selectedFilter === 'Mean') {
-                filter = [0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111];
+                filter = [0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111, 0.11111111111];
                 document.getElementById('filter').style.display = 'none';
             }
             else {
@@ -118,26 +118,6 @@
 
 
             table.innerHTML = '';
-            
-
-            // if (selectedFilter === 'Mean') {
-            //     document.getElementById('filter').style.display = 'none';
-            // }
-            // else if (selectedFilter === 'Weighted') {
-            //     document.getElementById('filter').style.display = 'none';
-            // }
-            // if(selectedFilter === 'Mean'){
-            //     document.getElementById('filter').style.display = 'none';
-            // }
-
-
-
-
-            //image & filter
-            //     const image = [
-            //     91, 253, 253, 0, 252, 4, 254, 129, 12, 7, 7, 3, 53, 7, 252, 5, 5, 87, 133, 205, 29, 4, 5, 5, 252, 252, 252, 78, 18, 13
-            // ];
-            // const filter = [252, 29, 1, 29, 4, 5, 252, 78, 18];
 
             for (let i = 0; i < stringImage.length; i++) {
                 image[i] = parseFloat(stringImage[i]);
@@ -148,11 +128,11 @@
                     filter[i] = parseFloat(stringFilter[i]);
                 }
             }
-            // if(numberFilter === ''){
+            // if (numberFilter === '') {
             //     alert('Filter cannot be empty..');
             //     return;
             // }
-            if(filter.length != 9){
+            if (filter.length != 25) {
                 alert('Your filter length should be 9');
                 return;
             }
@@ -167,12 +147,14 @@
             let x = 0;
             let y = 1;
             let z = 2;
-            let loop = ((m * n) - ((n * 2) + ((m - 2) * 2)));
+            let u = 3;
+            let v = 4;
+            let loop = ((m * n) - ((n * 4) + ((m - 4) * 4)));
             let newImage = [];
-            let trackIndex = [0, 1, 2];
+            let trackIndex = [0, 1, 2, 3, 4];
 
             for (let i = 0; i < loop; i++) {
-                for (let i = 0; i < 6; i++) {
+                for (let i = 0; i < 20; i++) {
                     let res = trackIndex[i] + n;
                     trackIndex.push(res);
                 }
@@ -197,35 +179,39 @@
                 const h4 = document.createElement('h4');
                 const span = document.createElement('span');
                 const span2 = document.createElement('span');
+                const span3 = document.createElement('span');
+                const span4 = document.createElement('span');
                 h4.innerHTML = `Result = ${sum} <br>`;
                 table.appendChild(h4);
                 table.appendChild(span);
                 table.appendChild(span2);
-                for (let i = 0; i < 9; i++) {
+                table.appendChild(span3);
+                table.appendChild(span4);
+                for (let i = 0; i < 25; i++) {
                     trackIndex.pop();
                     newImage.pop();
                 }
                 x++;
                 y++;
                 z++;
+                u++;
+                v++;
                 trackIndex.push(x);
                 trackIndex.push(y);
                 trackIndex.push(z);
+                trackIndex.push(u);
+                trackIndex.push(v);
                 console.log(trackIndex);
 
                 ///increment index
 
                 let k = (n - 1);
-                //if not work back to handcore.
-                // if (z == 6 || z == 13 || z == 20 || z == 27 || z == 34) {
-                //     x += 2;
-                //     y += 2;
-                //     z += 2;
-                // }
-                if (z == k || z == k * 2 + 1 || z == k * 3 + 2 || z == k * 4 + 3 || z == k * 5 + 4) {
+                if (v == k || v == v * 2 + 1 || v == v * 3 + 2 || v == k * 4 + 3 || v == k * 5 + 4) {
                     x += 2;
                     y += 2;
                     z += 2;
+                    u += 2;
+                    v += 2;
                 }
 
             }
